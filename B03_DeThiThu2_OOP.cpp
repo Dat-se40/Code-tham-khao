@@ -65,9 +65,11 @@ public:
 };
 
 // Tập hợp 5 yếu tố khí tượng tại 1 thời điểm
-struct TapHopBienSo {
+class TapHopBienSo {
+private: 
     vector<YeuToThoiTiet*> bienSo;
 
+public:
     TapHopBienSo() {
         bienSo.resize(5);
         bienSo[0] = new NhietDo;
@@ -93,6 +95,12 @@ struct TapHopBienSo {
         for (int i = 0; i < 5; i++) {
             bienSo[i]->datSoLieu(b.bienSo[i]->laySoLieu());
         }
+    }
+    YeuToThoiTiet* operator[](int index) const {
+        if (index < 0 || index >= bienSo.size()) {
+            return NULL ; 
+        }
+        return bienSo[index];
     }
 };
 
@@ -122,8 +130,8 @@ public:
 
     void capNhatBienSo() {
         for (int i = 0; i < 5; ++i) {
-            thoiDiem[1].bienSo[i]->thayDoi(
-                thoiDiem[0].bienSo[i]->laySoLieu(),
+            thoiDiem[1][i]->thayDoi(
+                thoiDiem[0][i]->laySoLieu(), 
                 doCao, doChePhu
             );
         }
@@ -134,15 +142,15 @@ public:
     }
 
     float mucThayDoiNhietDo() const {
-        return thoiDiem[1].bienSo[0]->laySoLieu() - thoiDiem[0].bienSo[0]->laySoLieu();
+        return thoiDiem[1][0]->laySoLieu() - thoiDiem[0][0]->laySoLieu();
     }
 
     string duBaoKieuThoiTiet() const {
-        float T = thoiDiem[1].bienSo[0]->laySoLieu();
-        float H = thoiDiem[1].bienSo[1]->laySoLieu();
-        float W = thoiDiem[1].bienSo[2]->laySoLieu();
-        float S = thoiDiem[1].bienSo[3]->laySoLieu();
-        float P = thoiDiem[1].bienSo[4]->laySoLieu();
+        float T = thoiDiem[1][0]->laySoLieu();
+        float H = thoiDiem[1][1]->laySoLieu();
+        float W = thoiDiem[1][2]->laySoLieu();
+        float S = thoiDiem[1][3]->laySoLieu();
+        float P = thoiDiem[1][4]->laySoLieu();
 
         if (P >= 15 && W >= 12 && T < 25)
             return "Giong bao";
@@ -174,7 +182,7 @@ int main() {
     TapHopBienSo bienSoChung;
     bienSoChung.nhap();
 
-    int soLuongVung;
+    int soLuongVung; 
     cout << "Nhap so luong vung: ";
     cin >> soLuongVung;
     vector<VungDiaLy> danhSachVung(soLuongVung);
@@ -201,5 +209,6 @@ int main() {
         }
     }
 
+    system("pause");
     return 0;
 }

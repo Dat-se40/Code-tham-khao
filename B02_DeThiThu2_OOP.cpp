@@ -9,10 +9,11 @@ private:
     int size;
 
 public:
-    Vector(int n) : size(n) { container.resize(n); }
+    Vector(int n = 0 ) : size(n) { container.resize(n); }
 
     friend istream &operator>>(istream &in, Vector &v)
-    {
+    {   
+        if ( v.size == 0 ) cin>>v.size;
         for (int &x : v.container)
             cin >> x;
         return in;

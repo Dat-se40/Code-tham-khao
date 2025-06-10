@@ -1,0 +1,22 @@
+# Ignore VS Code folder
+.vscode/
+
+# Ignore build files
+*.o
+*.obj
+*.exe
+*.out
+
+# Ignore backups and temporary files
+*~
+*.tmp
+*.log
+
+# Ignore PDF files (remove this line if you want to keep PDFs)
+*.pdf
+
+# Ignore compiled debug folders (if any)
+build/
+bin/
+debug/
+release/
