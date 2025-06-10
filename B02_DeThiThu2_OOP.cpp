@@ -13,7 +13,10 @@ public:
 
     friend istream &operator>>(istream &in, Vector &v)
     {   
-        if ( v.size == 0 ) cin>>v.size;
+        if ( v.size == 0 ){
+            in>>v.size;
+            v.container.resize(v.size);
+        } 
         for (int &x : v.container)
             cin >> x;
         return in;
@@ -46,7 +49,7 @@ public:
 };
   int main()
 {
-    Vector A(3), B(3), C(3) ;  // Tạo vector có kích thước bằng 3
+    Vector A(3), B, C(3) ;  // Tạo vector có kích thước bằng 3
     cout<< A << endl; // 0 0 0
     cin >> B >> A; 
     C = A + B;
