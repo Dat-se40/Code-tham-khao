@@ -49,7 +49,7 @@ public:
 };
   int main()
 {
-    Vector A(3), B, C(3) ;  // Tạo vector có kích thước bằng 3
+    Vector A(3), B(3), C(3) ;  // Tạo vector có kích thước bằng 3
     cout<< A << endl; // 0 0 0
     cin >> B >> A; 
     C = A + B;
