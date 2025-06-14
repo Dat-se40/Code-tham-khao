@@ -18,14 +18,14 @@ public:
             v.container.resize(v.size);
         } 
         for (int &x : v.container)
-            cin >> x;
+            in >> x;
         return in;
     }
 
     friend ostream &operator<<(ostream &out, const Vector &v)
     {
         for (int x : v.container)
-            cout << x << " ";
+            out << x << " ";
         return out;
     }
 
@@ -49,11 +49,11 @@ public:
 };
   int main()
 {
-    Vector A(3), B, C(3) ;  // Tạo vector có kích thước bằng 3
+    Vector A(3), B(3), C(3) ;  // Tạo vector có kích thước bằng 3
     cout<< A << endl; // 0 0 0
     cin >> B >> A; 
     C = A + B;
-    cout << " c = a + b = " << C<<endl;
+    cout << "c = a + b = " << C<<endl;
     cout << "B(1) = " << B(1) << endl; // gia tri thu 2
     return 0;
 }

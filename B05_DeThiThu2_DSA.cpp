@@ -25,8 +25,6 @@ void BFS(vector<bool> &daTham, const vector<vector<int>> &danhSachKe, int u)
         }
     }
 }
-
-
 int soThanhPhanLienThong(const vector<vector<int>> &danhSachKe)
 {
     int n = danhSachKe.size(), kq = 0;
@@ -42,26 +40,49 @@ int soThanhPhanLienThong(const vector<vector<int>> &danhSachKe)
     return kq;
 }
 
+// Hàm chuyển từ danh sách cạnh sang danh sách kề
+vector<vector<int>> chuyenSangDanhSachKe(int n, const vector<pair<int, int>> &danhSachCanh)
+{
+    vector<vector<int>> danhSachKe(n);
+    for (auto [u, v] : danhSachCanh)
+    {
+        danhSachKe[u].push_back(v);
+        danhSachKe[v].push_back(u); // nếu là đồ thị vô hướng
+    }
+    return danhSachKe;
+}
+
 int main()
 {
-    int n;
+    int n, m;
     cout << "Nhap so dinh: ";
     cin >> n;
+    cout << "Nhap so canh: ";
+    cin >> m;
 
-    vector<vector<int>> danhSachKe(n);
-    cout << "Nhap danh sach ke (nhap cac dinh ke cho moi dinh, ket thuc bang -1):\n";
-    for (int i = 0; i < n; ++i)
+    vector<pair<int, int>> danhSachCanh;
+    cout << "Nhap cac canh (u v):\n";
+    for (int i = 0; i < m; ++i)
     {
-        cout << "Dinh " << i << ": ";
-        int dinhKe;
-        while (cin >> dinhKe && dinhKe != -1)
-        {
-            danhSachKe[i].push_back(dinhKe);
-        }
+        int u, v;
+        cin >> u >> v;
+        danhSachCanh.push_back({u, v});
     }
+
+    vector<vector<int>> danhSachKe = chuyenSangDanhSachKe(n, danhSachCanh);
 
     int kq = soThanhPhanLienThong(danhSachKe);
     cout << "So thanh phan lien thong: " << kq << endl;
 
     return 0;
 }
+/*
+8
+6
+0 1
+1 2
+3 4
+5 6
+6 7
+5 7
+*/
